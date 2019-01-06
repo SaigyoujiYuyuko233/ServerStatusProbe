@@ -6,6 +6,10 @@
 
 const fs = require("fs");
 const router = require('express').Router();
+const postParser = require('body-parser');
+
+// post解析中间件
+router.use(postParser.urlencoded({ extended:false }));
 
 // 登录验证界面
 router.get("/",function (req, res) {
@@ -22,7 +26,14 @@ router.post("/login",function (req, res) {
     //设置头
     res.header("Content-Type","text/html");
 
-    res.send(req.get("username"));
+    // 设置变量
+    let username = req.body.username;
+    let password = req.body.password;
+
+    // 判断用户名是否正确
+    fs.stat("./users/" + username + ".json",function (err,stats) {
+        console.log(stats);
+    });
 });
 
 //模块导出
