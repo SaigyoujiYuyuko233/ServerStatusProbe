@@ -109,4 +109,12 @@ http.createServer(app).listen(Setting.Http_server_port,Setting.Http_server_ip);
 module.exports = app;
 
 console.log("[ " + "HttpServer".green + " ] " + "Http服务器已启动 [".input + Setting.Http_server_ip + ":" + Setting.Http_server_port + "]".input);
-console.log("[" + " Global ".green + "] " + "探针已加载完成! 感谢您使用 SSProbe 服务器探针!".input);
+console.log("[" + " Global ".green + "] " + "探针已加载完成! 耗时:".input + process.uptime() + "s 感谢您使用 SSProbe 服务器探针!".input);
+
+// 如果此次启动是测试
+if(process.argv[3] == "--test"){
+    console.log("[" + " Test ".debug + "] " + "检测到此次启动是测试! 系统自动退出!".input);
+    console.log("Exiting...");
+    
+    process.exit();
+}
