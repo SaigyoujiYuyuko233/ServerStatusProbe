@@ -12,7 +12,7 @@ cache:
 before_script:
   - npm install
 script:
-  - npm start
+  - npm run test
 branches:
   only:
     - master
