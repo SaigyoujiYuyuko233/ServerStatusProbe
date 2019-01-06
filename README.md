@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SaigyoujiYuyuko233/ServerStatusProbe.svg?branch=master)](https://travis-ci.org/SaigyoujiYuyuko233/ServerStatusProbe)
+
 # ServerStatusProbe
 A probe for your server - 您的服务器探针
 
