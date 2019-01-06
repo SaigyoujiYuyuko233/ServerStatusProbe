@@ -11,6 +11,9 @@ cache:
     - node_modules
 before_script:
   - npm install
+script:
+  - npm run build
+  - npm start
 branches:
   only:
     - master
