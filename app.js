@@ -30,7 +30,7 @@ global.start_time = localtime.getTime();
  */
 
 // Http模块
-const express = require('expresss');
+const express = require('express');
 const http = require('http');
 const app = express();
 
