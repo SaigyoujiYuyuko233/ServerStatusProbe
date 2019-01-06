@@ -114,7 +114,7 @@ console.log("[" + " Global ".green + "] " + "探针已加载完成! 耗时: ".in
 // 如果此次启动是测试
 if(process.argv[2] == "--test"){
     console.log("[" + " Test ".debug + "] " + "检测到此次启动是测试! 系统自动退出!".input);
-    console.log("[" + " Test ".debug + "] " + "Exiting...");
+    console.log("[" + " Test ".debug + "] " + "Exiting...".input);
     
     process.exit(0);
 }
