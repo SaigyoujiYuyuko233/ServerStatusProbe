@@ -1,6 +1,5 @@
-![Project](https://img.shields.io/github/release/qubyte/rubidium.svg)
+![Project](https://img.shields.io/github/release/ServerStatusProbe/rubidium.svg)
 [![Build Status](https://travis-ci.org/SaigyoujiYuyuko233/ServerStatusProbe.svg?branch=master)](https://travis-ci.org/SaigyoujiYuyuko233/ServerStatusProbe)
-![Project](https://img.shields.io/github/release/qubyte/rubidium.svg)
 ![Project](https://img.shields.io/badge/License-GPLv3-red.svg)
 ![Project](https://img.shields.io/github/languages/code-size/badges/shields.svg)
 
