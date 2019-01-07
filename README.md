@@ -1,8 +1,7 @@
 ![Project](https://img.shields.io/github/release/qubyte/rubidium.svg)
 [![Build Status](https://travis-ci.org/SaigyoujiYuyuko233/ServerStatusProbe.svg?branch=master)](https://travis-ci.org/SaigyoujiYuyuko233/ServerStatusProbe)
-![![](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://img.shields.io/github/downloads/:user/:repo/:tag/total.svg)
-![Project](https://img.shields.io/npm/v/:scope/:packageName.svg)
-![Project](https://img.shields.io/github/license/:user/:repo.svg)
+![Project](https://img.shields.io/github/release/qubyte/rubidium.svg)
+![Project](https://img.shields.io/badge/License-AGPLv3-red.svg)
 ![Project](https://img.shields.io/github/languages/code-size/badges/shields.svg)
 
 # ServerStatusProbe
