@@ -6,6 +6,7 @@
 
 const fs = require("fs");
 const router = require('express').Router();
+const session = require('express-session');
 const postParser = require('body-parser');
 
 // post解析中间件
@@ -32,8 +33,12 @@ router.post("/login",function (req, res) {
 
     // 判断用户名是否正确
     fs.stat("./users/" + username + ".json",function (err,stats) {
-        console.log(stats);
+        if(stats == undefine){
+            res.redirect("/auth/?message=无法找到此用户!");
+        }
     });
+    
+    
 });
 
 //模块导出
