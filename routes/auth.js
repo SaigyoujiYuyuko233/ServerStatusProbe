@@ -33,8 +33,8 @@ router.post("/login",function (req, res) {
 
     // 判断用户名是否正确
     fs.stat("./users/" + username + ".json",function (err,stats) {
-        if(stats == undefine){
-            res.redirect("/auth/?message=无法找到此用户!");
+        if(stats == undefined){
+            res.redirect("/auth/?message=此用户不存在!");
         }
     });
     
