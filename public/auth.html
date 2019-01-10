@@ -43,6 +43,11 @@
             margin-top: 2%;
         }
 
+        .login-bar .form-group .input-group{
+            width: 96%;
+            margin-left: 2%;
+        }
+
         .login-bar .form-group #message{
             width: 94%;
             margin-left: 3%;
@@ -68,7 +73,7 @@
 
         .login-bar .touhouCharacter{
             width: 94%;
-            margin-left: 5%;
+            margin-left: 3%;
 
             color: white;
         }
@@ -111,7 +116,7 @@
             window.document.body.style.backgroundImage = "url('"+ Character[5] +"')";
 
             $(".Cname").html(Character[0]);
-            $(".COname").html(Character[1]);
+            $(".COname").html(Character[1] + "  " + Character[2]);
             $(".SPname").html(Character[3]);
             $(".info").html(Character[4]);
             document.getElementsByClassName("music")[0].src = "http://" + Character[6] + "&height=66";
@@ -124,6 +129,17 @@
                 $("#message").css("display","block");
                 $("#message").html(message);
             }
+
+            // 响应式自适应
+            let window_width = window.outerWidth;
+
+            // 手机全屏
+            if (window_width <= 1200) {
+                $(".login-bar").css("width","100%");
+            }
+
+            console.log(window_width);
+
 
         });
     </script>
@@ -150,7 +166,7 @@
                     <input type="text" class="form-control" name="password" placeholder="密码">
                 </div>
 
-                <button class="btn btn-success" style="margin-top: 20px; width: 94%; margin-left: 5%;">登录</button>
+                <button class="btn btn-success" style="margin-top: 20px; width: 94%; margin-left: 3%;">登录</button>
             </form>
         </div>
 
@@ -167,7 +183,7 @@
 
                 <br>
 
-                <iframe style="width: 98%; height: 74px; border: 0px white solid;" class="music"></iframe>
+                <iframe style="width: 80%; height: 74px; border: 0px white solid;" class="music"></iframe>
             </div>
         </div>
     </div>
