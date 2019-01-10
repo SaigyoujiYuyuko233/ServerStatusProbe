@@ -1,2 +1,1 @@
-*.css linguist-language=NodeJS
-*.js linguist-language=NodeJS
+*.html linguist-language=javascript
