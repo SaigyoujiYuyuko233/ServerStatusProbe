@@ -9,4 +9,4 @@ function webLog() {
     }
 };
 
-global.middleware_global_webLog = webLog();
+module.exports = webLog();

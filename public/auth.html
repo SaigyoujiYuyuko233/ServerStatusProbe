@@ -2,11 +2,12 @@
 <head>
     <title>幽幽子服务器探针</title>
 
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="icon" href="/images/logo.jpg">
 
-    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="/js/get.js"></script>
     <script src="/js/THCC.js"></script>
 
     <style>
@@ -27,7 +28,7 @@
             right: 0;
             border-left: 1px #0f0f0f solid;
             height: 100%;
-            width: 20%;
+            width: 26%;
             opacity: 0.8;
         }
 
@@ -40,6 +41,22 @@
 
         .login-bar .form-group{
             margin-top: 2%;
+
+            color: white;
+        }
+
+        .login-bar .form-group .input-group{
+            width: 96%;
+            margin-left: 2%;
+
+            color: white;
+        }
+
+        .login-bar .form-group #message{
+            width: 94%;
+            margin-left: 3%;
+
+            display: none;
         }
 
         .login-bar .form-group h2{
@@ -48,14 +65,23 @@
             margin-bottom: 8%;
         }
 
-        .login-bar .form-group .input-group{
-            width: 94%;
-            margin-left: 5%;
+        .login-bar .form-group .input-group-addon{
+            background-color: #2f2f2f;
+            border-color: #2d2d2d;
+
+            color: white;
+        }
+
+        .login-bar .form-group input{
+            background-color: #2d2d2d;
+            border-color: #292929;
+
+            color: white;
         }
 
         .login-bar .touhouCharacter{
             width: 94%;
-            margin-left: 5%;
+            margin-left: 3%;
 
             color: white;
         }
@@ -93,14 +119,36 @@
     <script>
         $(document).ready(function () {
             // 东方人物背景 + 简介
+
             const Character = choose(0,1);
             window.document.body.style.backgroundImage = "url('"+ Character[5] +"')";
 
             $(".Cname").html(Character[0]);
-            $(".COname").html(Character[1]);
+            $(".COname").html(Character[1] + "  " + Character[2]);
             $(".SPname").html(Character[3]);
             $(".info").html(Character[4]);
             document.getElementsByClassName("music")[0].src = "http://" + Character[6] + "&height=66";
+
+            // 获取get参数 显示错误信息
+            let message = $_GET['message'];
+
+            if (message != undefined){
+                message = decodeURI(message);
+                $("#message").css("display","block");
+                $("#message").html(message);
+            }
+
+            // 响应式自适应
+            let window_width = window.outerWidth;
+
+            // 手机全屏
+            if (window_width <= 1200) {
+                $(".login-bar").css("width","100%");
+            }
+
+            console.log(window_width);
+
+
         });
     </script>
 
@@ -113,6 +161,8 @@
         <div class="form-group">
             <h2>登录</h2>
 
+            <div class="alert alert-danger" id="message" ></div>
+
             <form method="post" action="/auth/login">
                 <div class="input-group" style="margin-bottom: 10px;">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -124,7 +174,7 @@
                     <input type="text" class="form-control" name="password" placeholder="密码">
                 </div>
 
-                <button class="btn btn-success" style="margin-top: 20px; width: 94%; margin-left: 5%;">登录</button>
+                <button class="btn btn-success" style="margin-top: 20px; width: 94%; margin-left: 3%;">登录</button>
             </form>
         </div>
 
@@ -141,7 +191,7 @@
 
                 <br>
 
-                <iframe style="width: 98%; height: 74px; border: 0px white solid;" class="music"></iframe>
+                <iframe style="width: 80%; height: 74px; border: 0px white solid;" class="music"></iframe>
             </div>
         </div>
     </div>

@@ -24,6 +24,8 @@ global.localtime = new Date();
 // 启动时间
 global.start_time = localtime.getTime();
 
+// 已登录的用户
+global.sessions = {};
 
 /**
  * 模块的导入
@@ -68,12 +70,12 @@ console.log("[ " + "Config".green + " ] " + "配置文件 [Setting.js] 已加载
  */
 
 // 导入中间件
-require("./routes/middleware/global");
+let middleware_global = require("./routes/middleware/middleware_global");
 
 // 注册中间件
-app.all("/*",middleware_global_webLog);
+app.all("/*",middleware_global);
 
-console.log("[ " + "MiddleWare".green + " ] " + "中间件 [global.js] 已加载!".gray);
+console.log("[ " + "MiddleWare".green + " ] " + "中间件 [middleware_global.js] 已加载!".gray);
 
 
 /**
@@ -109,4 +111,12 @@ http.createServer(app).listen(Setting.Http_server_port,Setting.Http_server_ip);
 module.exports = app;
 
 console.log("[ " + "HttpServer".green + " ] " + "Http服务器已启动 [".input + Setting.Http_server_ip + ":" + Setting.Http_server_port + "]".input);
-console.log("[" + " Global ".green + "] " + "探针已加载完成! 感谢您使用 SSProbe 服务器探针!".input);
+console.log("[" + " Global ".green + "] " + "探针已加载完成! 耗时: ".input + (process.uptime()*1000) + "ms 感谢您使用 SSProbe 服务器探针!".input);
+
+// 如果此次启动是测试
+if(process.argv[2] === "--test"){
+    console.log("[" + " Test ".debug + "] " + "检测到此次启动是测试! 系统自动退出!".input);
+    console.log("[" + " Test ".debug + "] " + "Exiting...".input);
+    
+    process.exit(0);
+}
