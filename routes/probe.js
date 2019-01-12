@@ -26,10 +26,11 @@ colors.setTheme({
  * 主路由组
  */
 
-router.get("/",function (req,res) {
-    res.send("You are login! So this is the main page of the SSProbe!");
+// 仪表盘
+router.get("/dashboard",function (req,res) {
+    res.header("Content-Type","text/html");
+    res.send(fs.readFileSync("./views/probe/dashboard.html"));
 });
-
 
 
 //模块导出

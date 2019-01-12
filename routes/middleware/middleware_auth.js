@@ -21,14 +21,16 @@ function isLogin() {
     return function (req, res, next){
         const console_head = "[ WARN ]".warn + "[ Auth ] ".green + req.ip.warn + " ";
 
-        let auth_token = new Buffer(req.cookies.auth_token, 'base64').toString('utf8');
-        let session_token = sessions[auth_token.split("|")[0]];
+        let auth_token = req.cookies.auth_token;
 
         // 如果cookie不存在
         if (auth_token === undefined){
             res.redirect("/auth");
             return false;
         }
+
+        auth_token = new Buffer(req.cookies.auth_token, 'base64').toString('utf8');
+        let session_token = sessions[auth_token.split("|")[0]];
 
         // 如果本地没有记录
         if (session_token === undefined){
@@ -56,7 +58,7 @@ function isLogin() {
             console.log(console_head + "用户: ".gray + auth_token.split("|")[0] + " 的cookie与本地session不匹配!".gray);
 
             // 删除本地 + 远程
-            sessions.splice(sessions.indexOf(cookie_username),session_token.length);
+            sessions.splice(sessions.inArray(cookie_username),session_token.length);
             res.cookie("auth_token","qwq",{expires: new Date(Date.now() - 9999),path: "/"});
 
             res.redirect("/auth/?message=身份令牌与服务器不一样!请重新登录!");
@@ -68,7 +70,7 @@ function isLogin() {
             console.log(console_head + "用户: ".gray + auth_token.split("|")[0] + " 的cookie与本地session不匹配!".gray);
 
             // 删除本地 + 远程
-            sessions.splice(sessions.indexOf(cookie_username),session_token.length);
+            sessions.splice(sessions.inArray(cookie_username),session_token.length);
             res.cookie("auth_token","qwq",{expires: new Date(Date.now() - 9999),path: "/"});
 
             res.redirect("/auth/?message=身份令牌信息与服务器不一样!请重新登录!");
@@ -80,7 +82,7 @@ function isLogin() {
             console.log(console_head + "用户: ".gray + auth_token.split("|")[0] + " 的cookie与本地session不匹配!".gray);
 
             // 删除本地 + 远程
-            sessions.splice(sessions.indexOf(cookie_username),session_token.length);
+            sessions.splice(sessions.inArray(cookie_username),session_token.length);
             res.cookie("auth_token","qwq",{expires: new Date(Date.now() - 9999),path: "/"});
 
             res.redirect("/auth/?message=身份令牌信息与服务器不一样!请重新登录!");

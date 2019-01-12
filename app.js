@@ -80,11 +80,12 @@ app.all("/*",middleware_global);
 app.use("*",cookie_parser());
 app.use("*",postParser.urlencoded({ extended:false }));
 app.use("/probe*",middleware_auth);
+app.use("/user/api*",middleware_auth);
 
-console.log("[ " + "MiddleWare".green + " ] " + "中间件 [cookie_parser] 已加载!".gray);
-console.log("[ " + "MiddleWare".green + " ] " + "中间件 [postParser] 已加载!".gray);
-console.log("[ " + "MiddleWare".green + " ] " + "中间件 [middleware_global.js] 已加载!".gray);
-console.log("[ " + "MiddleWare".green + " ] " + "中间件 [middleware_auth.js] 已加载!".gray);
+console.log("[ " + "MiddleWare".green + " ] " + "中间件 [cookie_parser] 已加载并注册!".gray);
+console.log("[ " + "MiddleWare".green + " ] " + "中间件 [postParser] 已加载并注册!".gray);
+console.log("[ " + "MiddleWare".green + " ] " + "中间件 [middleware_global.js] 已加载并注册!".gray);
+console.log("[ " + "MiddleWare".green + " ] " + "中间件 [middleware_auth.js] 已加载并注册!".gray);
 
 
 /**
@@ -94,13 +95,16 @@ console.log("[ " + "MiddleWare".green + " ] " + "中间件 [middleware_auth.js] 
 // 导入路由组文件
 const router_auth = require("./routes/auth");
 const router_probe = require("./routes/probe");
+const user_api = require("./routes/userApi");
 
 // 注册路由组
 app.use("/auth",router_auth);
 app.use("/probe",router_probe);
+app.use("/user/api",user_api);
 
-console.log("[ " + "RouterGroup".green + " ] " + "路由组 [auth.js] 已加载!".gray);
-console.log("[ " + "RouterGroup".green + " ] " + "路由组 [probe.js] 已加载!".gray);
+console.log("[ " + "RouterGroup".green + " ] " + "路由组 [auth.js] 已加载并注册!".gray);
+console.log("[ " + "RouterGroup".green + " ] " + "路由组 [probe.js] 已加载并注册!".gray);
+console.log("[ " + "RouterGroup".green + " ] " + "路由组 [userApi.js] 已加载并注册!".gray);
 
 
 /**

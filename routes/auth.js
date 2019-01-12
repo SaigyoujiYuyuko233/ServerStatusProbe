@@ -85,12 +85,12 @@ router.post("/login",function (req, res) {
 
         {
         expires: new Date(Date.now() + 1000*60*60*Setting.token_remember_time),
-        httpOnly: true ,
-        path: "/",
+        httpOnly: false,
+        path: "/"
     });
 
     console.log("[ " + "INFO".green + " ][ " + "Auth".green + " ] " + req.ip.yellow + " 用户: ".gray + username_input + " 登陆成功!".gray);
-    res.redirect("/probe");
+    res.redirect("/probe/dashboard");
 
 });
 
