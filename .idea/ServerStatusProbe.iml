@@ -15,5 +15,6 @@
     <orderEntry type="library" name="@types/color" level="application" />
     <orderEntry type="library" name="@types/node-cron" level="application" />
     <orderEntry type="library" name="@types/md5" level="application" />
+    <orderEntry type="library" name="@types/array-find-index" level="application" />
   </component>
 </module>

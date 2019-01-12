@@ -15,20 +15,45 @@
 
 /*------------------ 配置开始------------------ */
 
-/**
+/************************************************
+ *             Web Server Config                *
+ *                                              *
+ *           ==== http服务器的设置 ====           *
+ ************************************************
+ */
+
+/*
  * The port that the httpServer listening
+ * http服务器的端口
  */
 
 Setting.Http_server_port = 2333;
 
-/**
+/*
  * The ip that the httpServer listening
+ * http服务器监听的ip
  */
 
 Setting.Http_server_ip = "0.0.0.0";
 
-/**
+
+/************************************************
+ *             Probe Config                     *
+ *                                              *
+ *         ==== SSProbe的设置 ====               *
+ ************************************************
+ */
+
+/*
  * The frequency of the data update[ms]
+ * 探针数据更新速度[ms]
  */
 
 Setting.Data_update_time = 500;
+
+/*
+ * The token that you login keep time[hour]
+ * 您登录的令牌保持时间[小时]
+ */
+
+Setting.token_remember_time = 4;

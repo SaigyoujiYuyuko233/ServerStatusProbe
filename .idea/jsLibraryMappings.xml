@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{ServerStatusProbe/node_modules}" />
-    <file url="PROJECT" libraries="{@types/color, @types/express, @types/express-ws, @types/md5, @types/node-cron, @types/node-jsfl-runner, @types/requirejs, ServerStatusProbe/node_modules}" />
+    <file url="PROJECT" libraries="{@types/array-find-index, @types/color, @types/express, @types/express-ws, @types/md5, @types/node-cron, @types/node-jsfl-runner, @types/requirejs, ServerStatusProbe/node_modules}" />
     <includedPredefinedLibrary name="HTTP Response Handler" />
   </component>
 </project>
