@@ -42,7 +42,7 @@ router.post("/login",function (req, res) {
     if (userFile_exist === false){
         console.log("[ " + "WARN".warn + " ][ " + "Auth".green + " ] " + req.ip.warn + " 使用不存在的用户: ".gray + username_input + " 进行登录!".gray);
 
-        res.redirect("/auth/?message=此用户不存在!");
+        res.redirect("/auth/?message=用户名或密码错误!");
         return false;
     }
 

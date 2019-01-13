@@ -13,8 +13,8 @@
     <script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
 
     <style>
-        body{
-            font-family: '微软雅黑 Light','en', 'FontAwesome';
+        body {
+            font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, sans-serif;
         }
 
         @font-face{
@@ -24,7 +24,7 @@
         }
 
         .top-bar{
-            height: 5%;
+            height: 50px;
             width: 100%;
         }
 
@@ -34,8 +34,8 @@
         }
 
         .tools-bar{
-            height: 95%;
-            width: 250px;
+            height: 100%;
+            width: 240px;
 
             padding-top: 10px;
             display: inline-block;
@@ -77,12 +77,13 @@
         });
     </script>
 </head>
-<body>
 
-    <div class="top-bar mdui-color-red-400 mdui-valign">
+<body style="padding-top: 50px;" class="mdui-drawer-body-left">
+
+    <div class="top-bar mdui-color-red-400 mdui-valign" style="position: fixed; top: 0;left: 0;">
         <div class="text-bar mdui-valign" style="width: 100%">
 
-            <button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-typo-display-1" mdui-drawer="{target: '.tools-bar', swipe: true}">
+            <button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-typo-display-1" mdui-drawer="{target: '.mdui-drawer', swipe: true}">
                 <i class="mdui-icon material-icons mdui-text-left">menu</i>
             </button>
 
@@ -91,56 +92,60 @@
         </div>
     </div>
 
-    <div class="mdui-collapse" mdui-collapse="options">
-        <div class="mdui-collapse-item mdui-collapse-item-open">
-            <div class="mdui-collapse-item-header"></div>
-            <div class="mdui-collapse-item-body">
+        <div class="mdui-drawer mdui-drawer-open" id="main-drawer" style="height: 100%; margin-top: 50px;">
+            <div class="mdui-collapse">
+                <div class="mdui-collapse-item mdui-collapse-item-open">
+                    <div class="mdui-collapse-item-header"></div>
+                    <div class="mdui-collapse-item-body">
 
-                <div class="tools-bar" style="background-color: #ff5f66;">
-                    <div class="avatar">
-                        <img class="avatar_image">
+                        <div class="tools-bar mdui-color-grey-900">
+                            <div class="avatar">
+                                <img class="avatar_image">
 
-                        <div class="info" style="display: inline-block; vertical-align: top; padding-left: 6px;">
-                            <p class="username mdui-typo-headline" style="margin-top: 10px; margin-bottom: 0;"></p>
-                            <p class="mdui-typo-title-opacity" style="margin-top: 14px; margin-top: 0px;">
-                                <span style="border-radius: 50%; background-color: #4caf50; width: 12px; height: 12px; display: inline-block"></span>&nbsp;Online
-                            </p>
+                                <div class="info" style="display: inline-block; vertical-align: top; padding-left: 6px;">
+                                    <p class="username mdui-typo-headline" style="margin-top: 10px; margin-bottom: 0;"></p>
+                                    <p class="mdui-typo-title-opacity" style="margin-top: 14px; margin-top: 0px;">
+                                        <span style="border-radius: 50%; background-color: #4caf50; width: 12px; height: 12px; display: inline-block"></span>&nbsp;Online
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="mdui-divider" style="width: 96%; margin-left: 2%; border-color: #2d2d2d; margin-top: 10px; margin-bottom: 10px;">&nbsp;</div>
+
+                            <ul class="mdui-list">
+
+                                <li class="mdui-list-item mdui-ripple" style="color: #2196f3; padding-left: 16px;">
+                                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-typo-title"><i class="mdui-icon material-icons" style="color: #2196f3;">dashboard</i></i>
+                                    <div class="mdui-list-item-content ">仪表盘</div>
+                                </li>
+
+
+                                <li class="mdui-list-item mdui-ripple" style="color: #F57C00;  padding-left: 16px;">
+                                    <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color: #F57C00;">&#xe86f;</i></i>
+                                    <div class="mdui-list-item-content">Shell命令行</div>
+                                </li>
+
+                                <li class="mdui-list-item mdui-ripple" style="color:#4CAF50;  padding-left: 16px;">
+                                    <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color:#4CAF50;">&#xe24d;</i></i>
+                                    <div class="mdui-list-item-content">文件管理</div>
+                                </li>
+
+                                <li class="mdui-list-item mdui-ripple" style="color:#D500F9;  padding-left: 16px;">
+                                    <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color:#D500F9;">&#xe853;</i></i>
+                                    <div class="mdui-list-item-content">用户管理</div>
+                                </li>
+
+                            </ul>
+
                         </div>
 
                     </div>
-
-                    <div class="mdui-divider" style="width: 96%; margin-left: 2%; border-color: #2d2d2d; margin-top: 10px; margin-bottom: 10px;">&nbsp;</div>
-
-                    <ul class="mdui-list">
-
-                        <li class="mdui-list-item mdui-ripple" style="color: #AB47BC; padding-left: 16px;">
-                            <i class="mdui-list-item-icon mdui-icon material-icons mdui-typo-title"><i class="mdui-icon material-icons" style="color: #AB47BC;">dashboard</i></i>
-                            <div class="mdui-list-item-content ">仪表盘</div>
-                        </li>
-
-
-                        <li class="mdui-list-item mdui-ripple" style="color: #1565C0;  padding-left: 16px;">
-                            <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color: #1565C0;">&#xe86f;</i></i>
-                            <div class="mdui-list-item-content">Shell命令行</div>
-                        </li>
-
-                        <li class="mdui-list-item mdui-ripple" style="color:#4CAF50;  padding-left: 16px;">
-                            <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color:#4CAF50;">&#xe24d;</i></i>
-                            <div class="mdui-list-item-content">文件管理</div>
-                        </li>
-
-                        <li class="mdui-list-item mdui-ripple" style="color:#03A9F4;  padding-left: 16px;">
-                            <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color:#03A9F4;">&#xe853;</i></i>
-                            <div class="mdui-list-item-content">用户管理</div>
-                        </li>
-
-                    </ul>
-
                 </div>
-
             </div>
         </div>
-    </div>
+
+        <iframe src="https://www.bilibili.com" style="border: 0px white solid; width: 100%;height: 94%"></iframe>
 
 </body>
 </html>
