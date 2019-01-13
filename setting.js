@@ -49,7 +49,7 @@ Setting.Http_server_ip = "0.0.0.0";
  * 探针数据更新速度[ms]
  */
 
-Setting.Data_update_time = 500;
+Setting.Data_update_time = 1000;
 
 /*
  * The token that you login keep time[hour]

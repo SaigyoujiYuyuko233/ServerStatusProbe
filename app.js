@@ -62,6 +62,10 @@ colors.setTheme({
 require("./setting.js");
 console.log("[ " + "Config".green + " ] " + "配置文件 [Setting.js] 已加载!".gray);
 
+// 核心文件导入
+require("./core/system_info");
+
+console.log("[ " + "Config".green + " ] " + "核心文件 [system_info.js] 已加载!".gray);
 
 /**
  *===========创建web服务器===========

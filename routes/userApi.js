@@ -7,6 +7,7 @@
 const fs = require("fs");
 const router = require('express').Router();
 const path = require('path');
+const os = require('os');
 
 
 /**
@@ -35,6 +36,14 @@ router.get("/userInfo",function (req,res) {
 
     // 获取文件内容 + 发送
     res.sendFile(file_path);
+});
+
+// 系统信息
+router.get("/systemInfo",function (req,res) {
+    // 开机时间
+    system_info.up_time = os.uptime();
+
+    res.send(JSON.stringify(system_info));
 });
 
 
