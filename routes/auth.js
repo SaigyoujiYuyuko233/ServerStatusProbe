@@ -8,20 +8,7 @@ const fs = require("fs");
 const md5 = require("md5");
 const router = require('express').Router();
 const colors = require("colors");
-
-colors.setTheme({
-    silly: 'rainbow',
-    input: 'grey',
-    verbose: 'cyan',
-    prompt: 'red',
-    info: 'green',
-    data: 'blue',
-    help: 'cyan',
-    warn: 'yellow',
-    debug: 'magenta',
-    error: 'red'
-});
-
+const path = require('path');
 
 // 登录验证界面
 router.get("/",function (req, res) {
@@ -30,12 +17,12 @@ router.get("/",function (req, res) {
 
     // 判断登录状态
     if (req.cookies.auth_token !== undefined){
-        res.redirect("/probe");
+        res.redirect("/probe/dashboard");
         return true;
     }
 
     // 视图
-    res.send(fs.readFileSync("./views/auth/auth.html"));
+    res.sendFile(path.join(__dirname,"/../public/auth/auth.html"));
 });
 
 

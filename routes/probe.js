@@ -7,6 +7,7 @@
 const fs = require("fs");
 const router = require('express').Router();
 const colors = require("colors");
+const path = require('path');
 
 colors.setTheme({
     silly: 'rainbow',
@@ -29,7 +30,7 @@ colors.setTheme({
 // 仪表盘
 router.get("/dashboard",function (req,res) {
     res.header("Content-Type","text/html");
-    res.send(fs.readFileSync("./views/probe/dashboard.html"));
+    res.sendFile(path.join(__dirname + "/../public/probe/dashboard.html"));
 });
 
 

@@ -129,13 +129,20 @@
             $(".info").html(Character[4]);
             document.getElementsByClassName("music")[0].src = "http://" + Character[6] + "&height=66";
 
+            // 防 xxs
+            function htmlencode(s){
+                var div = document.createElement('div');
+                div.appendChild(document.createTextNode(s));
+                return div.innerHTML;
+            }
+
             // 获取get参数 显示错误信息
             let message = $_GET['message'];
 
-            if (message != undefined){
+            if (message !== undefined){
                 message = decodeURI(message);
                 $("#message").css("display","block");
-                $("#message").html(message);
+                $("#message").html(htmlencode(message));
             }
 
             // 响应式自适应

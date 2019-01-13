@@ -25,7 +25,7 @@ global.localtime = new Date();
 global.start_time = localtime.getTime();
 
 // 已登录的用户
-global.sessions = {};
+global.sessions = [];
 
 /**
  * 模块的导入

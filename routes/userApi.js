@@ -6,20 +6,7 @@
 
 const fs = require("fs");
 const router = require('express').Router();
-const colors = require("colors");
-
-colors.setTheme({
-    silly: 'rainbow',
-    input: 'grey',
-    verbose: 'cyan',
-    prompt: 'red',
-    info: 'green',
-    data: 'blue',
-    help: 'cyan',
-    warn: 'yellow',
-    debug: 'magenta',
-    error: 'red'
-});
+const path = require('path');
 
 
 /**
@@ -38,7 +25,7 @@ router.get("/userInfo",function (req,res) {
     }
 
     // 判断文件
-    let file_path = "./users/" + username + ".json";
+    let file_path = path.join(__dirname + "/../users/" + username + ".json");
     let file_exist = fs.existsSync(file_path);
 
     if (file_exist === false){
@@ -47,7 +34,7 @@ router.get("/userInfo",function (req,res) {
     }
 
     // 获取文件内容 + 发送
-    res.send(fs.readFileSync(file_path));
+    res.sendFile(file_path);
 });
 
 

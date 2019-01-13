@@ -2,20 +2,14 @@
  * 一个判断用户登录状态的中间件
  */
 
-const colors = require("colors");
-
-colors.setTheme({
-    silly: 'rainbow',
-    input: 'grey',
-    verbose: 'cyan',
-    prompt: 'red',
-    info: 'green',
-    data: 'blue',
-    help: 'cyan',
-    warn: 'yellow',
-    debug: 'magenta',
-    error: 'red'
-});
+// 查找数组成员位置
+const arr_position = function (arr,name) {
+    for (let i=0; i < arr.length; i++){
+        if (arr[name] !== undefined){
+            return i;
+        }
+    }
+};
 
 function isLogin() {
     return function (req, res, next){
@@ -58,10 +52,10 @@ function isLogin() {
             console.log(console_head + "用户: ".gray + auth_token.split("|")[0] + " 的cookie与本地session不匹配!".gray);
 
             // 删除本地 + 远程
-            sessions.splice(sessions.inArray(cookie_username),session_token.length);
+            sessions.splice(arr_position(sessions,cookie_username),session_token.length);
             res.cookie("auth_token","qwq",{expires: new Date(Date.now() - 9999),path: "/"});
 
-            res.redirect("/auth/?message=身份令牌与服务器不一样!请重新登录!");
+            res.redirect("/auth/?message=身份令牌与服务器不一样[token]!请重新登录!");
 
             return false;
         }
@@ -70,10 +64,10 @@ function isLogin() {
             console.log(console_head + "用户: ".gray + auth_token.split("|")[0] + " 的cookie与本地session不匹配!".gray);
 
             // 删除本地 + 远程
-            sessions.splice(sessions.inArray(cookie_username),session_token.length);
+            sessions.splice(arr_position(sessions,cookie_username),session_token.length);
             res.cookie("auth_token","qwq",{expires: new Date(Date.now() - 9999),path: "/"});
 
-            res.redirect("/auth/?message=身份令牌信息与服务器不一样!请重新登录!");
+            res.redirect("/auth/?message=身份令牌信息与服务器不一样[time_stamp]!请重新登录!");
 
             return false;
         }
@@ -82,10 +76,10 @@ function isLogin() {
             console.log(console_head + "用户: ".gray + auth_token.split("|")[0] + " 的cookie与本地session不匹配!".gray);
 
             // 删除本地 + 远程
-            sessions.splice(sessions.inArray(cookie_username),session_token.length);
+            sessions.splice(arr_position(sessions,cookie_username),session_token.length);
             res.cookie("auth_token","qwq",{expires: new Date(Date.now() - 9999),path: "/"});
 
-            res.redirect("/auth/?message=身份令牌信息与服务器不一样!请重新登录!");
+            res.redirect("/auth/?message=身份令牌信息与服务器不一样[ip]!请重新登录!");
 
             return false;
         }

@@ -1,0 +1,146 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSProbe - 监控中心</title>
+
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/mdui/0.4.2/css/mdui.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon" href="/images/logo.jpg">
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/mdui/0.4.2/js/mdui.js"></script>
+    <script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
+
+    <style>
+        body{
+            font-family: '微软雅黑 Light','en', 'FontAwesome';
+        }
+
+        @font-face{
+            font-family: 'FontAwesome';
+            font-display:auto;
+            src: url('/fonts/FontAwesome.otf');
+        }
+
+        .top-bar{
+            height: 5%;
+            width: 100%;
+        }
+
+        .top-bar .login-out{
+            margin-right: 8px;
+            margin-bottom: 0px;
+        }
+
+        .tools-bar{
+            height: 95%;
+            width: 250px;
+
+            padding-top: 10px;
+            display: inline-block;
+            /*background: linear-gradient(#ef5350, #ec407a);*/
+        }
+
+        .tools-bar .avatar{
+            padding-left: 10px;
+        }
+
+        .tools-bar .avatar_image{
+            border-radius: 100px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            // 从cookie 获取用户名
+            let username = document.cookie;
+            username = username.split(";")[0];
+            username = username.split("=")[1];
+            username = unescape(username);
+            username = atob(username).split("|")[0];
+
+            // 获取用户信息
+            $.ajax({
+                url: "/user/api/userInfo?username=" + escape(username),
+                data: "",
+                success: function (data) {
+                    console.log(data);
+
+                    // 设置头像地址
+                    document.getElementsByClassName("avatar_image")[0].src = "https://www.gravatar.com/avatar/" + md5(data.email) + "?s=85";
+
+                    // 设置用户名
+                    $(".username").html(data.username);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div class="top-bar mdui-color-red-400 mdui-valign">
+        <div class="text-bar mdui-valign" style="width: 100%">
+
+            <button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple mdui-typo-display-1" mdui-drawer="{target: '.tools-bar', swipe: true}">
+                <i class="mdui-icon material-icons mdui-text-left">menu</i>
+            </button>
+
+            <p class="mdui-typo-subheading-opacity login-out" style="display: inline-block; position: absolute; right: 6px;"><i class="fa fa-sign-out"></i>&nbsp;退出登录</p>
+
+        </div>
+    </div>
+
+    <div class="mdui-collapse" mdui-collapse="options">
+        <div class="mdui-collapse-item mdui-collapse-item-open">
+            <div class="mdui-collapse-item-header"></div>
+            <div class="mdui-collapse-item-body">
+
+                <div class="tools-bar" style="background-color: #ff5f66;">
+                    <div class="avatar">
+                        <img class="avatar_image">
+
+                        <div class="info" style="display: inline-block; vertical-align: top; padding-left: 6px;">
+                            <p class="username mdui-typo-headline" style="margin-top: 10px; margin-bottom: 0;"></p>
+                            <p class="mdui-typo-title-opacity" style="margin-top: 14px; margin-top: 0px;">
+                                <span style="border-radius: 50%; background-color: #4caf50; width: 12px; height: 12px; display: inline-block"></span>&nbsp;Online
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="mdui-divider" style="width: 96%; margin-left: 2%; border-color: #2d2d2d; margin-top: 10px; margin-bottom: 10px;">&nbsp;</div>
+
+                    <ul class="mdui-list">
+
+                        <li class="mdui-list-item mdui-ripple" style="color: #AB47BC; padding-left: 16px;">
+                            <i class="mdui-list-item-icon mdui-icon material-icons mdui-typo-title"><i class="mdui-icon material-icons" style="color: #AB47BC;">dashboard</i></i>
+                            <div class="mdui-list-item-content ">仪表盘</div>
+                        </li>
+
+
+                        <li class="mdui-list-item mdui-ripple" style="color: #1565C0;  padding-left: 16px;">
+                            <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color: #1565C0;">&#xe86f;</i></i>
+                            <div class="mdui-list-item-content">Shell命令行</div>
+                        </li>
+
+                        <li class="mdui-list-item mdui-ripple" style="color:#4CAF50;  padding-left: 16px;">
+                            <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color:#4CAF50;">&#xe24d;</i></i>
+                            <div class="mdui-list-item-content">文件管理</div>
+                        </li>
+
+                        <li class="mdui-list-item mdui-ripple" style="color:#03A9F4;  padding-left: 16px;">
+                            <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color:#03A9F4;">&#xe853;</i></i>
+                            <div class="mdui-list-item-content">用户管理</div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
