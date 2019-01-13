@@ -67,9 +67,8 @@ router.post("/login",function (req, res) {
     sessions[username_input] = user_password + "|" + Date.now() + "|" + req.ip;
 
     // set cookie
-    res.cookie("auth_token",
-        new Buffer(username_input + "|" + user_password + "|" + Date.now() + "|" + req.ip).toString("base64"),
-
+    let cookie = new Buffer(username_input + "|" + user_password + "|" + Date.now() + "|" + req.ip).toString("base64");
+    res.cookie("auth_token",cookie,
         {
         expires: new Date(Date.now() + 1000*60*60*Setting.token_remember_time),
         httpOnly: false,

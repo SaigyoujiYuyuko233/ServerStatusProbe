@@ -30,13 +30,18 @@
                 let json = JSON.parse(date);
 
                 let uptime = json.up_time/60/60;
-                let uptime_hour = uptime.toString().split(".")[0];
-                let uptime_min = (uptime - uptime_hour.toString().split(".")[0])*60;
-                let uptime_sec = (json.up_time - uptime_hour*60*60) - (((json.up_time - uptime_hour*60*60)/60).toString().split(".")[0])*60;
+                let uptime_day = ((uptime.toString().split(".")[0])/24).toString().split(".")[0];
+                let uptime_hour = uptime.toString().split(".")[0] - (((uptime.toString().split(".")[0])/24).toString().split(".")[0])*24;
+                let uptime_min = ((json.up_time - uptime.toString().split(".")[0]*60*60)/60).toString().split(".")[0];
+                let uptime_sec = (json.up_time - uptime.toString().split(".")[0]*60*60) - (((json.up_time - uptime.toString().split(".")[0]*60*60)/60).toString().split(".")[0])*60;
 
                 $(".system_type").html(json.system_type);
                 $(".system_arch").html(json.system_architecture);
-                $(".system_uptime").html(uptime_hour + " 小时 " + uptime_min.toString().split(".")[0] + "分 " + uptime_sec.toString().split(".")[0] + "秒");
+                $(".cpu_num").html(json.cpu_info.length + "核");
+                $(".cpu_type").html(json.cpu_info[0].model);
+                $(".root_path").html(json.user_root);
+                $(".ram_vol").html((json.ram_vol/1024/1024).toString().split(".")[0] + " MB");
+                $(".system_uptime").html( uptime_day + "天 " + uptime_hour + "小时 " + uptime_min.toString().split(".")[0] + "分 " + uptime_sec.toString().split(".")[0] + "秒");
 
                 console.log(json);
             });
@@ -49,11 +54,13 @@
                     let json = JSON.parse(date);
 
                     let uptime = json.up_time/60/60;
-                    let uptime_hour = uptime.toString().split(".")[0];
-                    let uptime_min = ((json.up_time - uptime_hour*60*60)/60).toString().split(".")[0];
-                    let uptime_sec = (json.up_time - uptime_hour*60*60) - (((json.up_time - uptime_hour*60*60)/60).toString().split(".")[0])*60;
+                    let uptime_day = ((uptime.toString().split(".")[0])/24).toString().split(".")[0];
+                    let uptime_hour = uptime.toString().split(".")[0] - (((uptime.toString().split(".")[0])/24).toString().split(".")[0])*24;
+                    let uptime_min = ((json.up_time - uptime.toString().split(".")[0]*60*60)/60).toString().split(".")[0];
+                    let uptime_sec = (json.up_time - uptime.toString().split(".")[0]*60*60) - (((json.up_time - uptime.toString().split(".")[0]*60*60)/60).toString().split(".")[0])*60;
 
-                    $(".system_uptime").html(uptime_hour + " 小时 " + uptime_min.toString().split(".")[0] + "分 " + uptime_sec.toString().split(".")[0] + "秒");
+                    $(".system_uptime").html( uptime_day + "天 " + uptime_hour + "小时 " + uptime_min.toString().split(".")[0] + "分 " + uptime_sec.toString().split(".")[0] + "秒");
+
                 });
             },1000);
         });
@@ -64,60 +71,89 @@
 
     <div class="container" style="margin-top: 60px;">
 
-        <!-- cpu -->
-        <div class="mdui-panel" mdui-panel>
-            <div class="mdui-panel-item mdui-panel-item-open">
-                <div class="mdui-panel-item-header">
-                    <div class="mdui-panel-item-title">系统信息</div>
-                    <div class="mdui-panel-item-summary system_type"></div>
-                    <div class="mdui-panel-item-summary system_arch"></div>
-                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-                </div>
-                <div class="mdui-panel-item-body">
-                    <div class="mdui-panel-item-actions">
+            <!-- system -->
+            <div class="mdui-panel" mdui-panel>
+                <div class="mdui-panel-item mdui-panel-item-open">
+                    <div class="mdui-panel-item-header">
+                        <div class="mdui-panel-item-title">系统信息</div>
+                        <div class="mdui-panel-item-summary">概况</div>
+                        <div class="mdui-panel-item-summary system_type"></div>
+                        <div class="mdui-panel-item-summary system_arch"></div>
+                        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <div class="mdui-panel-item-body">
 
                         <table class="table">
                             <tbody>
-                                <tr>
-                                    <td>系统类型</td>
-                                    <td class="system_type"></td>
-                                </tr>
+                            <tr>
+                                <td>系统类型</td>
+                                <td class="system_type"></td>
+                            </tr>
 
-                                <tr>
-                                    <td>系统架构</td>
-                                    <td class="system_arch"></td>
-                                </tr>
+                            <tr>
+                                <td>系统架构</td>
+                                <td class="system_arch"></td>
+                            </tr>
 
-                                <tr>
-                                    <td>开机时间</td>
-                                    <td class="system_uptime"></td>
-                                </tr>
+                            <tr>
+                                <td>开机时间</td>
+                                <td class="system_uptime"></td>
+                            </tr>
                             </tbody>
                         </table>
 
-                        <button class="mdui-btn mdui-ripple" mdui-panel-item-close>关闭</button>
+                        <div class="mdui-panel" mdui-panel>
+
+                            <div class="mdui-panel-item">
+                                <div class="mdui-panel-item-header">
+                                    <div class="mdui-panel-item-title">系统详细信息</div>
+                                    <div class="mdui-panel-item-summary">CPU型号|内存|etc.</div>
+                                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                                </div>
+                                <div class="mdui-panel-item-body">
+
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>CPU型号</td>
+                                                <td class="cpu_type"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>内存总量</td>
+                                                <td class="ram_vol"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>用户根目录</td>
+                                                <td class="root_path"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- cpu -->
-        <div class="mdui-panel" mdui-panel style="margin-top: 30px;">
-            <div class="mdui-panel-item">
-                <div class="mdui-panel-item-header">
-                    <div class="mdui-panel-item-title">CPU 使用率</div>
-                    <div class="mdui-panel-item-summary">--/--%</div>
-                    <div class="mdui-panel-item-summary">4核</div>
-                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-                </div>
-                <div class="mdui-panel-item-body">
-                    <div class="mdui-panel-item-actions">
-                        <button class="mdui-btn mdui-ripple" mdui-panel-item-close>关闭</button>
+            <!-- cpu -->
+            <div class="mdui-panel" mdui-panel style="margin-top: 30px;">
+                <div class="mdui-panel-item">
+                    <div class="mdui-panel-item-header">
+                        <div class="mdui-panel-item-title">CPU 使用率</div>
+                        <div class="mdui-panel-item-summary">--/--%</div>
+                        <div class="mdui-panel-item-summary cpu_num"></div>
+                        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <div class="mdui-panel-item-body">
+                        <div class="mdui-panel-item-actions">
+                            <button class="mdui-btn mdui-ripple" mdui-panel-item-close>关闭</button>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
-
     </div>
 
 </body>

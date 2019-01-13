@@ -16,5 +16,12 @@
     <orderEntry type="library" name="@types/node-cron" level="application" />
     <orderEntry type="library" name="@types/md5" level="application" />
     <orderEntry type="library" name="@types/array-find-index" level="application" />
+    <orderEntry type="library" name="@types/facebook-js-sdk" level="application" />
+    <orderEntry type="library" name="@types/express" level="application" />
+    <orderEntry type="library" name="@types/cookie-parser" level="application" />
+    <orderEntry type="library" name="@types/express-ws" level="application" />
+    <orderEntry type="library" name="@types/color" level="application" />
+    <orderEntry type="library" name="@types/node-fetch" level="application" />
+    <orderEntry type="library" name="@types/node" level="application" />
   </component>
 </module>

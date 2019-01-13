@@ -20,3 +20,6 @@ system_info.system_type = os.type();
 
 // 开机时间
 system_info.up_time = os.uptime();
+
+// 内存总量
+system_info.ram_vol = os.totalmem();
