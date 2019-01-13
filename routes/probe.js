@@ -30,7 +30,13 @@ colors.setTheme({
 // 仪表盘
 router.get("/dashboard",function (req,res) {
     res.header("Content-Type","text/html");
-    res.sendFile(path.join(__dirname + "/../public/probe/dashboard.html"));
+    res.sendFile(path.join(__dirname + "/../public/probe/backstage_framework.html"));
+});
+
+// iframe 功能页面
+router.get("/backstage/:target",function (req,res) {
+    res.header("Content-Type","text/html");
+    res.sendFile(path.join(__dirname + "/../public/probe/backstage/" + req.params.target + ".html"));
 });
 
 

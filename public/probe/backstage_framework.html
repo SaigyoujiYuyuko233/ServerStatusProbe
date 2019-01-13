@@ -1,6 +1,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>SSProbe - 监控中心</title>
 
     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
@@ -35,7 +37,7 @@
 
         .tools-bar{
             height: 100%;
-            width: 240px;
+            width: 100% !important;
 
             padding-top: 10px;
             display: inline-block;
@@ -115,26 +117,32 @@
 
                             <ul class="mdui-list">
 
-                                <li class="mdui-list-item mdui-ripple" style="color: #2196f3; padding-left: 16px;">
+                                <li class="mdui-list-item mdui-ripple" style="color: #2196f3; padding-left: 16px;" onclick="goto('dashboard');">
                                     <i class="mdui-list-item-icon mdui-icon material-icons mdui-typo-title"><i class="mdui-icon material-icons" style="color: #2196f3;">dashboard</i></i>
                                     <div class="mdui-list-item-content ">仪表盘</div>
                                 </li>
 
 
-                                <li class="mdui-list-item mdui-ripple" style="color: #F57C00;  padding-left: 16px;">
+                                <li class="mdui-list-item mdui-ripple" style="color: #F57C00;  padding-left: 16px;" onclick="goto('shell');">
                                     <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color: #F57C00;">&#xe86f;</i></i>
                                     <div class="mdui-list-item-content">Shell命令行</div>
                                 </li>
 
-                                <li class="mdui-list-item mdui-ripple" style="color:#4CAF50;  padding-left: 16px;">
+                                <li class="mdui-list-item mdui-ripple" style="color:#4CAF50;  padding-left: 16px;" onclick="goto('fileManager');">
                                     <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color:#4CAF50;">&#xe24d;</i></i>
                                     <div class="mdui-list-item-content">文件管理</div>
                                 </li>
 
-                                <li class="mdui-list-item mdui-ripple" style="color:#D500F9;  padding-left: 16px;">
+                                <li class="mdui-list-item mdui-ripple" style="color:#D500F9;  padding-left: 16px;" onclick="goto('userManager');">
                                     <i class="mdui-list-item-icon mdui-icon material-icons"><i class="mdui-icon material-icons" style="color:#D500F9;">&#xe853;</i></i>
                                     <div class="mdui-list-item-content">用户管理</div>
                                 </li>
+
+                                <script>
+                                    function goto(target) {
+                                        document.getElementById("iframe").src = "/probe/backstage/" + target;
+                                    }
+                                </script>
 
                             </ul>
 
@@ -145,7 +153,7 @@
             </div>
         </div>
 
-        <iframe src="https://www.bilibili.com" style="border: 0px white solid; width: 100%;height: 94%"></iframe>
+        <iframe id="iframe" style="border: 0px white solid; width: 100%;height: 94%"></iframe>
 
 </body>
 </html>
